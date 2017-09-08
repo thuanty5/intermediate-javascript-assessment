@@ -44,7 +44,12 @@ function noWeakLink() {
     url: '/api/users'
   })
   // CODE HERE...
-
+  .then(function(res){
+    firstUser = res.data[0];
+    return firstUser;
+  }, function(rej){
+    thirdUser = rej;
+  })
 }
 
 
@@ -75,6 +80,9 @@ function large() {
 }
 // CODE HERE...
 
+var boundToElephant = large.bind(elephant);
+
+
 
 
 // *************
@@ -88,6 +96,10 @@ function large() {
 // and return the bound function.
 
 // CODE HERE...
+
+function deathStar(capacity, crew){
+  return capacity.bind(crew);
+}
 
 
 
@@ -103,6 +115,12 @@ function large() {
 // The closure function will return the combined value of assets and liabilities.
 
 // CODE HERE...
+function accountingOffice(assets){
+
+  return function (liabilities){
+    return assets + liabilities;
+  }
+}
 
 
 
@@ -112,7 +130,17 @@ function large() {
 
 // Create a function called forgetter that takes in a parameter:
 // name (String).
-
+function forgetter(string){
+  var rememberall =  function(item){
+    var newObj = {
+      name: item,
+      remember: [],
+    }
+    newObj.remember.push(item);
+    return newObj;
+  }
+  return rememberall(string);
+}
 // forgetter helps keep track of things people don't want to forget.
 // forgetter needs to return a function called rememberall.
 // rememberall takes in a parameter:
@@ -156,3 +184,4 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+
